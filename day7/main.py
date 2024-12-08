@@ -35,6 +35,7 @@ def part1(lines):
 def concat(n1, n2):
     return int(str(n1) + str(n2))
 
+
 def check_calibration_v2(current, target, numbers):
     if current == target and len(numbers) == 0:
         return True
