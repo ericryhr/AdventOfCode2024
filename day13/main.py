@@ -18,6 +18,17 @@ def solve_system(a1, b1, c1, a2, b2, c2):
         return (result[x], result[y])
 
 
+# It doesn't work for part 2 for some reason (probably float precision)
+# def solve_system(a1, b1, c1, a2, b2, c2):
+#     x = (b2*c1 - b1*c2) / (a1*b2 - a2*b1)
+#     y = (a1*c2 - a2*c1) / (a1*b2 - a2*b1)
+
+#     if x - int(x) != 0 and y - int(y) != 0:
+#         return (0, 0)
+#     else:
+#         return (int(x), int(y))
+
+
 def part1(lines):
     result = -1
     # PART 1 SOLUTION

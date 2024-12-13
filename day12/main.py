@@ -109,7 +109,8 @@ def calculate_region_info_v2(i, j, region_type, local_plots_explored, farm, prev
     return (area, perimeters)
 
 
-def calculate_perimeter_set(perimeters: list[Perimeter]):
+# Spaguetti code
+def calculate_perimeter_set(perimeters: list[Perimeter], farm):
     p: Perimeter = perimeters.pop()
     perimeter_set = [[p]]
     perimeter_index = 0
@@ -140,9 +141,17 @@ def calculate_perimeter_set(perimeters: list[Perimeter]):
                                 (p.out_i == p2.out_i and p.out_j == p2.out_j and
                                 abs(p.in_i - p2.in_i) == 1 and abs(p.in_j - p2.in_j) == 1)]
         if len(possible_diagonal) > 0:
-            p = perimeters.pop(possible_diagonal[0])
-            perimeter_set[perimeter_index].append(p)
-            continue
+            current_type = farm[p.in_i][p.in_j]
+            for diagonal_index in possible_diagonal:
+                p2 = perimeters[diagonal_index]
+                i = p.in_i if p.in_i != p.out_i else p2.in_i
+                j = p.in_j if p.in_j != p.out_j else p2.in_j
+                if p.out_i == p2.out_i and farm[i][j] != current_type:
+                    continue
+                else:
+                    p = perimeters.pop(diagonal_index)
+                    perimeter_set[perimeter_index].append(p)
+                    break
         else:
             p = perimeters.pop()
             perimeter_index += 1
@@ -185,16 +194,9 @@ def part2(lines):
             if (i, j) in global_plots_explored_2:
                 continue
             
-            print(f'{farm[i][j]}')
             area, perimeters = calculate_region_info_v2(i, j, farm[i][j], set(), farm)
-            perimeter_set = calculate_perimeter_set(perimeters)
-            # for p_set in perimeter_set:
-            #     print()
-            #     for p in p_set:
-            #         print(p)
-
+            perimeter_set = calculate_perimeter_set(perimeters, farm)
             perimeter_score = calculate_perimeter_score(perimeter_set)
-            # print(f'{farm[i][j]}: {perimeter_score}')
 
             result += area * perimeter_score
 
@@ -202,7 +204,7 @@ def part2(lines):
         print("The solution to part two is: " + str(result))
 
 
-def read_input(filename="day12/input.test7"):
+def read_input(filename="day12/input.txt"):
     with open(filename, 'r') as file:
         return file.readlines()
 
