@@ -16,20 +16,20 @@ def descargar_input(dia, sesion):
 
 def crear_main_py(dia):
     ruta_template = "template.py"
-    ruta_destino = f"day{dia}/main.py"
+    ruta_destino = f"day{'0' if int(dia) < 10 else ''}{dia}/main.py"
 
     with open(ruta_template, 'r') as file:
         contenido = file.read()
 
     contenido = contenido.replace("Day:", f"Day: {dia}")
-    contenido = contenido.replace("input.txt", f"day{dia}/input.txt")
+    contenido = contenido.replace("input.txt", f"day{'0' if int(dia) < 10 else ''}{dia}/input.txt")
 
     with open(ruta_destino, 'w') as file:
         file.write(contenido)
 
 
 def main(dia, sesion):
-    carpeta_dia = f"day{dia}"
+    carpeta_dia = f"day{'0' if int(dia) < 10 else ''}{dia}"
     if not os.path.exists(carpeta_dia):
         os.makedirs(carpeta_dia)
 
