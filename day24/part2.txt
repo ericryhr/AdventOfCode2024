@@ -1,0 +1,28 @@
+z07-vmv
+z20-kfm
+z28-hnv
+hth-tqr
+
+y00 XOR x00 -> z00
+x00 AND y00 -> gjk
+
+y01 XOR x01 -> cbs
+x01 AND y01 -> dvp
+gjk XOR cbs -> z01
+cbs AND gjk -> pct
+dvp OR pct -> sbw
+
+x02 XOR y02 -> rbr
+y02 AND x02 -> bwb
+rbr XOR sbw -> z02
+rbr AND sbw -> nng
+nng OR bwb -> trb
+
+y03 XOR x03 -> sgw
+y03 AND x03 -> wqw
+sgw XOR trb -> z03
+trb AND sgw -> gbj
+wqw OR gbj -> mwg
+
+x04 XOR y04 -> vvk
+y04 AND x04 -> ktr
